@@ -161,7 +161,7 @@ typedef enum SDL_GamepadButton
     SDL_GAMEPAD_BUTTON_GUIDE,
     SDL_GAMEPAD_BUTTON_START,
     SDL_GAMEPAD_BUTTON_LEFT_STICK,
-    SDL_GAMEPAD_BUTTON_RIGHT_STICK,
+    SDL_GAMEPAD_BUTTON_RIGHT_STICK,     /**< Steam Controller 2015 right pad click */
     SDL_GAMEPAD_BUTTON_LEFT_SHOULDER,
     SDL_GAMEPAD_BUTTON_RIGHT_SHOULDER,
     SDL_GAMEPAD_BUTTON_DPAD_UP,
@@ -174,9 +174,9 @@ typedef enum SDL_GamepadButton
     SDL_GAMEPAD_BUTTON_RIGHT_PADDLE2,   /**< Lower or secondary paddle, under your right hand (e.g. Xbox Elite paddle P2, DualSense Edge right Fn button, Right Joy-Con SL button, Steam Controller R5 button) */
     SDL_GAMEPAD_BUTTON_LEFT_PADDLE2,    /**< Lower or secondary paddle, under your left hand (e.g. Xbox Elite paddle P4, DualSense Edge left Fn button, Left Joy-Con SR button, Steam Controller L5 button) */
     SDL_GAMEPAD_BUTTON_TOUCHPAD,        /**< PS4/PS5 touchpad button */
-    SDL_GAMEPAD_BUTTON_MISC2,           /**< Additional button */
-    SDL_GAMEPAD_BUTTON_MISC3,           /**< Additional button (e.g. Nintendo GameCube left trigger click) */
-    SDL_GAMEPAD_BUTTON_MISC4,           /**< Additional button (e.g. Nintendo GameCube right trigger click) */
+    SDL_GAMEPAD_BUTTON_MISC2,           /**< Additional button Steam Controller 2015 Left Pad Click*/
+    SDL_GAMEPAD_BUTTON_MISC3,           /**< Additional button (e.g. Nintendo GameCube and Steam Controller 2015 left trigger click) */
+    SDL_GAMEPAD_BUTTON_MISC4,           /**< Additional button (e.g. Nintendo GameCube and Steam Controller 2015 right trigger click) */
     SDL_GAMEPAD_BUTTON_MISC5,           /**< Additional button */
     SDL_GAMEPAD_BUTTON_MISC6,           /**< Additional button */
     SDL_GAMEPAD_BUTTON_COUNT

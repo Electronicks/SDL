@@ -739,6 +739,9 @@ static void FormatStatePacketUntilGyro(SteamControllerStateInternal_t *pState, V
         pState->sLeftPadX = pState->sPrevLeftPad[0] = pStatePacket->sLeftPadX;
         pState->sLeftPadY = pState->sPrevLeftPad[1] = pStatePacket->sLeftPadY;
 
+        // Left pad is also clicked
+        pState->ulButtons |= STEAM_BUTTON_LEFTPAD_CLICKED_MASK;
+
         if (pStatePacket->ButtonTriggerData.ulButtons & STEAM_LEFTPAD_AND_JOYSTICK_MASK) {
             // The controller is interleaving both stick and pad data, both are active
             pState->sLeftStickX = pState->sPrevLeftStick[0];
@@ -1463,13 +1466,24 @@ static bool HIDAPI_DriverSteam_UpdateDevice(SDL_HIDAPI_Device *device)
 
                 SDL_SendJoystickButton(timestamp, joystick, SDL_GAMEPAD_BUTTON_LEFT_STICK,
                                           ((ctx->m_state.ulButtons & STEAM_JOYSTICK_BUTTON_MASK) != 0));
+
                 SDL_SendJoystickButton(timestamp, joystick, SDL_GAMEPAD_BUTTON_STEAM_LEFT_PADDLE,
                                           ((ctx->m_state.ulButtons & STEAM_BUTTON_BACK_LEFT_MASK) != 0));
+
                 SDL_SendJoystickButton(timestamp, joystick, SDL_GAMEPAD_BUTTON_STEAM_RIGHT_PADDLE,
                                           ((ctx->m_state.ulButtons & STEAM_BUTTON_BACK_RIGHT_MASK) != 0));
 
                 SDL_SendJoystickButton(timestamp, joystick, SDL_GAMEPAD_BUTTON_RIGHT_STICK,
                                           ((ctx->m_state.ulButtons & STEAM_BUTTON_RIGHTPAD_CLICKED_MASK) != 0));
+
+                SDL_SendJoystickButton(timestamp, joystick, SDL_GAMEPAD_BUTTON_MISC2,
+                                       ((ctx->m_state.ulButtons & STEAM_BUTTON_LEFTPAD_CLICKED_MASK) != 0));
+
+                SDL_SendJoystickButton(timestamp, joystick, SDL_GAMEPAD_BUTTON_MISC3,
+                                       ((ctx->m_state.ulButtons & STEAM_LEFT_TRIGGER_MASK) != 0));
+
+                SDL_SendJoystickButton(timestamp, joystick, SDL_GAMEPAD_BUTTON_MISC4,
+                                       ((ctx->m_state.ulButtons & STEAM_RIGHT_TRIGGER_MASK) != 0));
 
                 if (ctx->m_state.ulButtons & STEAM_DPAD_UP_MASK) {
                     hat |= SDL_HAT_UP;
